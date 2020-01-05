@@ -21,30 +21,30 @@ class MyAppState extends State<MyApp> {
     {
       'questionText': 'What\'s your favorite color?',
       'answers': [
-        {'text': 'Blue', 'score': 30},
-        {'text': 'Gray', 'score': 20},
-        {'text': 'Yellow', 'score': 10},
-        {'text': 'White', 'score': 0}
-      ]
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1},
+      ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
       'answers': [
-        {'text': 'Tiger', 'score': 30},
-        {'text': 'Monkey', 'score': 20},
-        {'text': 'Squarrel', 'score': 10},
-        {'text': 'Pig', 'score': 0}
-      ]
+        {'text': 'Rabbit', 'score': 3},
+        {'text': 'Snake', 'score': 11},
+        {'text': 'Elephant', 'score': 5},
+        {'text': 'Lion', 'score': 9},
+      ],
     },
     {
-      'questionText': 'What\'s your ex-girlfriens name?',
+      'questionText': 'Who\'s your favorite instructor?',
       'answers': [
-        {'text': 'Jane', 'score': 30},
-        {'text': 'Niche', 'score': 20},
-        {'text': 'Kristina', 'score': 10},
-        {'text': 'Lorence', 'score': 0}
-      ]
-    }
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+      ],
+    },
   ];
 
   void _answerQuestion(int score) {
@@ -58,6 +58,13 @@ class MyAppState extends State<MyApp> {
     print('total score is :' + _totalScore.toString());
   }
 
+  void _restart(){
+     setState(() {
+    _totalScore =0;
+    _questionIndex =0;
+     });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -66,8 +73,8 @@ class MyAppState extends State<MyApp> {
           title: Text('My First App'),
         ),
         body: _questionIndex < _questions.length
-            ? Quiz(_questions, _questionIndex, _answerQuestion)
-            : Result(_totalScore),
+            ? Quiz( questions: _questions,questionIndex:_questionIndex, answerQuestion: _answerQuestion )
+            : Result( _totalScore,_restart)
       ),
     );
   }

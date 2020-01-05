@@ -3,11 +3,11 @@ import './question.dart';
 import './answer.dart';
 
 class Quiz extends StatelessWidget {
-  var questions;
-  var questionIndex;
-  var answerQuestion;
+  final List<Map<String,Object>> questions;
+  final int questionIndex;
+  final Function answerQuestion;
 
-  Quiz(this.questions, this.questionIndex, this.answerQuestion);
+  Quiz({@required this.questions,@required this.questionIndex,@required this.answerQuestion});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class Quiz extends StatelessWidget {
         Question(questions[questionIndex]['questionText']),
         ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
             .map((answer) {
-          return Answer(()=>answerQuestion(answer['text']), answer['text']);
+          return Answer(()=>answerQuestion(answer['score']), answer['text']);
         }).toList()
       ],
     );
